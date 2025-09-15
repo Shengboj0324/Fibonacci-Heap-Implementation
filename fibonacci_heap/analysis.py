@@ -56,31 +56,22 @@ class FibonacciHeapAnalyzer:
         return int(math.log(n) / math.log(phi))
 
     def verify_fibonacci_property(self, heap: FibonacciHeap) -> bool:
-
         if heap.is_empty():
             return True
 
-        def check_node(node: FibonacciNode) -> bool:
-            # Check this node
-            if not node.verify_fibonacci_property():
-                return False
-
-            # Check all children recursively
-            if node.child is not None:
-                current = node.child
-                while True:
-                    if not check_node(current):
-                        return False
-                    current = current.right
-                    if current == node.child:
-                        break
+        def check_node_iterative(root: FibonacciNode) -> bool:
+            # Use iterative approach to avoid recursion depth issues
+            stack = [root]
+            while stack:
+                node = stack.pop()
+                if not node.verify_fibonacci_property():
+                    return False
+                # Add children to stack for processing
+                stack.extend(node.get_children())
             return True
-        # Check all root nodes
-        for root in heap.get_roots():
-            if not check_node(root):
-                return False
 
-        return True
+        # Check all root nodes
+        return all(check_node_iterative(root) for root in heap.get_roots())
 
     def verify_degree_bound(self, heap: FibonacciHeap) -> bool:
 

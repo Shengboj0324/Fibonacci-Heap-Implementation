@@ -7,7 +7,7 @@ import os
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from fibonacci_heap.fibonacci_heap import FibonacciHeap
+from fibonacci_heap.core import FibonacciHeap
 from fibonacci_heap.analysis import FibonacciHeapAnalyzer
 
 class TestFibonacciHeapAnalyzer(unittest.TestCase):
@@ -40,12 +40,12 @@ class TestFibonacciHeapAnalyzer(unittest.TestCase):
             (1, 0),
             (2, 1),
             (3, 2),
-            (5, 2),
-            (8, 3),
-            (13, 3),
-            (21, 4),
-            (100, 6),
-            (1000, 9)
+            (5, 3),
+            (8, 4),
+            (13, 5),
+            (21, 6),
+            (100, 9),
+            (1000, 14)
         ]
 
         for n, expected_bound in test_cases:

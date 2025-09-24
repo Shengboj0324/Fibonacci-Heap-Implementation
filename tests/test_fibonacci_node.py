@@ -7,7 +7,7 @@ import os
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from fibonacci_heap.fibonacci_node import FibonacciNode
+from fibonacci_heap.core import FibonacciNode
 
 class TestFibonacciNode(unittest.TestCase):
 
